@@ -4,7 +4,7 @@ TShock Plugin ——ProgressSync TShock插件——进度同步
 ps 权限 ProgressSync.admin 同步进度
 ps reset 重置进度
 ## 配置文件栗子
-''' json
+``` json
 {
   "Mysql IP地址": "localhost",
   "Mysql 端口": "3305",
@@ -19,5 +19,4 @@ ps reset 重置进度
     }
   ]
 }
-
-'''
+```
