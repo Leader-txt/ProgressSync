@@ -1,0 +1,15 @@
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\ProgressSync.dll
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\ProgressSync.pdb
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\Newtonsoft.Json.dll
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\OTAPI.dll
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\TerrariaServer.exe
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\TShockAPI.dll
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\Newtonsoft.Json.xml
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\OTAPI.pdb
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\TerrariaServer.pdb
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\obj\Debug\ProgressSync.csproj.AssemblyReference.cache
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\obj\Debug\ProgressSync.csproj.CoreCompileInputs.cache
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\obj\Debug\ProgressSync.csproj.CopyComplete
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\obj\Debug\ProgressSync.dll
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\obj\Debug\ProgressSync.pdb
+C:\Users\32512\Documents\Code\ProgressSync\ProgressSync\bin\Debug\MySql.Data.dll
