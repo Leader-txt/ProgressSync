@@ -16,7 +16,7 @@ namespace ProgressSync
             progress.progress.Add("HardMode", Main.hardMode);
             foreach (var yield in typeof(NPC).GetFields())
             {
-                if (yield.Name.StartsWith("downed"))
+                if (yield.Name.StartsWith("downed")||yield.Name.StartsWith("saved"))
                 {
                     progress.progress.Add(yield.Name, (bool)yield.GetValue(null));
                 }

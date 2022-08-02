@@ -16,6 +16,7 @@ namespace ProgressSync
         public override string Description => "进度同步";
         public override string Author => "Leader";
         public override Version Version => new Version(1, 0, 0, 0);
+        public Progress lastProgress { get; set; } = null;
         public MainPlugin(Main game) : base(game)
         {
             Data.Init();
@@ -38,12 +39,25 @@ namespace ProgressSync
 
         private void OnNPCKIlled(NpcKilledEventArgs args)
         {
-            if (args.npc.boss)
+            if (lastProgress == null)
             {
-                Progress.GetProgress().Update(null, "progress");
-                foreach (var s in Config.GetConfig().Servers)
+                lastProgress = Progress.GetProgress();
+            }
+            else
+            {
+                var now=Progress.GetProgress();
+                if(now != lastProgress)
                 {
-                    Utils.RawCmd(s, "/ps");
+                    lastProgress = now;
+                    now.Update(null, "progress");
+                    foreach (var s in Config.GetConfig().Servers)
+                    {
+                        try
+                        {
+                            Utils.RawCmd(s, "/ps");
+                        }
+                        catch { }
+                    }
                 }
             }
         }
