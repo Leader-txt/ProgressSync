@@ -1,8 +1,8 @@
 # ProgressSync
 TShock Plugin ——ProgressSync TShock插件——进度同步
 ## 命令
-ps 权限 ProgressSync.admin 同步进度
-ps reset 重置进度
+* ps 权限 ProgressSync.admin 同步进度
+* ps reset 重置进度
 ## 配置文件栗子
 ``` json
 {
