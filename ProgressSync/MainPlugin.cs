@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ProgressSync
         public override string Name => "ProgressingSync";
         public override string Description => "进度同步";
         public override string Author => "Leader";
-        public override Version Version => new Version(1, 0, 0, 0);
+        public override Version Version => new Version(1, 0, 1, 0);
         public Progress lastProgress { get; set; } = null;
         public MainPlugin(Main game) : base(game)
         {
@@ -28,13 +29,6 @@ namespace ProgressSync
         private void OnGamepostInit(EventArgs args)
         {
             Utils.Sync(Progress.Get()[0]);
-            /*Console.WriteLine(NPC.downedSlimeKing);
-            var prog = Progress.GetProgress();
-            Console.WriteLine(prog.progress==null);
-            foreach (var pair in prog.progress)
-            {
-                Console.WriteLine($"{pair.Key} {pair.Value}");
-            }*/
         }
 
         private void OnNPCKIlled(NpcKilledEventArgs args)
@@ -46,18 +40,24 @@ namespace ProgressSync
             else
             {
                 var now=Progress.GetProgress();
-                if(now != lastProgress)
+                if(now.progress.ToList().FindAll(x=>lastProgress.progress[x.Key]!=x.Value).Any())
                 {
                     lastProgress = now;
-                    now.Update(null, "progress");
-                    foreach (var s in Config.GetConfig().Servers)
+                    bool updated = false;
+                    while (Progress.Get()[0].progress.ToList().FindAll(x => now.progress[x.Key] != x.Value).Any())
                     {
-                        try
-                        {
-                            Utils.RawCmd(s, "/ps");
-                        }
-                        catch { }
+                        updated = true;
+                        now.Update(null, "progress");
                     }
+                    if (updated)
+                        foreach (var s in Config.GetConfig().Servers)
+                        {
+                            try
+                            {
+                                Utils.RawCmd(s, "/ps");
+                            }
+                            catch { }
+                        }
                 }
             }
         }
@@ -69,6 +69,19 @@ namespace ProgressSync
             else if (args.Parameters[0] == "reset")
             {
                 Progress.Delete();
+            }
+            else if(args.Parameters[0] == "rps")
+            {
+                Main.hardMode = false;
+                foreach (var yield in typeof(NPC).GetFields())
+                {
+                    if (yield.Name.StartsWith("downed") || yield.Name.StartsWith("saved"))
+                    {
+                        yield.SetValue(null, false);
+                    }
+                }
+                TSPlayer.All.SendData(PacketTypes.WorldInfo);
+                TShock.Utils.Broadcast("进度已重置！", Color.Green);
             }
         }
 
